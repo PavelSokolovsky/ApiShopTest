@@ -13,7 +13,7 @@ namespace ApiShopTest.Controllers
     {
         private ShopTestDBEntities db = new ShopTestDBEntities();
 
-        [HttpPost]
+        [HttpGet]
         [Route("myProducts")]
         [ResponseType(typeof(Responce.ResponceUsersProducts))]
         public IHttpActionResult ShowMyProducts(int idUser)
