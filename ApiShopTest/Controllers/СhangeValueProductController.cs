@@ -29,6 +29,7 @@ namespace ApiShopTest.Controllers
                 client.amountCurrent = client.amountCurrent - 1;
                 db.SaveChanges();
                 return Ok();
+
             }
 
             else 

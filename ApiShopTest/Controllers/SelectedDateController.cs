@@ -12,28 +12,21 @@ namespace ApiShopTest.Controllers
     public class SelectedDateController : ApiController
     {
         private ShopTestDBEntities db = new ShopTestDBEntities();
-        public class Data6
-        {
-            public int id { get; set; }
-            public DateTime orderDate { get; set; }
-            public int isActive { get; set; }
-
-        }
-
-        [HttpPost]
+    
+        [HttpGet]
         [Route("selectedDate")]
-        [ResponseType(typeof(Responce.ResponceOrders))]
-        public IHttpActionResult ShowMyOrders([FromBody] Data6 data6)
-        {
-            List<Orders> orders = db.Orders.Where(i => i.idUsers == data6.id && i.orderDate == data6.orderDate).ToList();
 
-            if (orders == null)
+        public IHttpActionResult ShowMyOrders(int Id, DateTime orderDate)
+        {
+            List<Orders> orderss = db.Orders.Where(i => i.idUsers == Id && i.orderDate == orderDate).ToList();
+
+            if (orderss == null)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(orders.ConvertAll<Responce.ResponceOrders>(i => new Responce.ResponceOrders(i)));
+                return Ok(orderss.ConvertAll<Responce.ResponceOrders>(i => new Responce.ResponceOrders(i)));
             }
         }
     }

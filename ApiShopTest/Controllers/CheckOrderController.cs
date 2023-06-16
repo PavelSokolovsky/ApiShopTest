@@ -16,7 +16,7 @@ namespace ApiShopTest.Controllers
         private ShopTestDBEntities db = new ShopTestDBEntities();
 
         [HttpGet]
-        [Route("getInfoCheckOrder")]
+        [Route("getInfoCheckOrder")] 
         public IHttpActionResult getInfoCheckOrder(int Id)
         {
             var info = db.UsersProducts.FirstOrDefault(i => i.idUsers == Id && i.amountMin==i.amountCurrent);
