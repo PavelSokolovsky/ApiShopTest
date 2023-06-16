@@ -21,7 +21,7 @@ namespace ApiShopTest.Controllers
         {
             var info = db.UsersProducts.FirstOrDefault(i => i.idUsers == Id && i.amountMin==i.amountCurrent);
             if (info != null)
-            {
+            { 
                 return Ok();
             }   
             else
