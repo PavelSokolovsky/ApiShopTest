@@ -27,8 +27,8 @@ namespace ApiShopTest.Models
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        internal virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        internal virtual ICollection<UsersProducts> UsersProducts { get; set; }
+        public virtual ICollection<UsersProducts> UsersProducts { get; set; }
     }
 }

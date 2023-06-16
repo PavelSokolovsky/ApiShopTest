@@ -32,7 +32,7 @@ namespace ApiShopTest.Controllers
                 client.amountMin = data1.amountMin;
                 client.amountMAX = data1.amountMax;
                 db.SaveChanges();
-                return StatusCode(HttpStatusCode.NoContent);
+                return Ok();
             }
             else
             {

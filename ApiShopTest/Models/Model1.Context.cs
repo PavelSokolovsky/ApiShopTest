@@ -31,5 +31,7 @@ namespace ApiShopTest.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersProducts> UsersProducts { get; set; }
+        public virtual DbSet<ProductsInOrderView> ProductsInOrderView { get; set; }
+        public virtual DbSet<ProductsView> ProductsView { get; set; }
     }
 }

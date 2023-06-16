@@ -12,20 +12,13 @@ namespace ApiShopTest.Controllers
     public class ShowMyOrdersController : ApiController
     {
         private ShopTestDBEntities db = new ShopTestDBEntities();
-        public class Data3
-        {
-            public int id { get; set; }
-            public DateTime orderDate { get; set; }
-            public int isActive { get; set; }
 
-        }
-
-        [HttpPost]
+        [HttpGet]
         [Route("myOrders")]
-        [ResponseType(typeof(Responce.ResponceOrders))]
-        public IHttpActionResult ShowMyOrders([FromBody] Data3 data3)
+        
+        public IHttpActionResult ShowMyOrders(int Id)
         {
-            List<Orders> orders = db.Orders.Where(i => i.idUsers == data3.id).ToList();
+            List<Orders> orders = db.Orders.Where(i => i.idUsers == Id).ToList();
 
             if (orders == null)
             {

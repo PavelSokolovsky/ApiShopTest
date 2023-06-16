@@ -17,13 +17,14 @@ namespace ApiShopTest.Controllers
 
         [HttpGet]
         [Route("getInfoIsActiveOrder")]
+        
         public IHttpActionResult getInfoIsActiveOrder(int Id)
         {
-            var info = db.Orders.FirstOrDefault(i=>i.idUsers ==  Id&& i.isActive==true);
+            var info = db.Orders.FirstOrDefault(i=>i.idUsers ==  Id && i.isActive==true);
             if (info != null)
             {
                
-                return Ok(info);
+                return Ok();
             }
             else 
             {

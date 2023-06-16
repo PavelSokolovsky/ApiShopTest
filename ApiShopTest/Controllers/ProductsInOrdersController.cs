@@ -15,24 +15,25 @@ namespace ApiShopTest.Controllers
         public class Data5
         {
             public int id { get; set; }
+            public int idOrder { get; set; }
             
 
         }
 
         [HttpPost]
         [Route("productsInOrders")]
-        [ResponseType(typeof(Responce.ResponceProductsInOrder))]
+        [ResponseType(typeof(Responce.ResponceProductsInOrderView))]
         public IHttpActionResult ProductsInOrders([FromBody] Data5 data5)
         {
-            List<PriductsInOrders> products = db.PriductsInOrders.Where(i => i.idOrder == data5.id).ToList();
+            List<ProductsInOrderView> productsInOrderView = db.ProductsInOrderView.Where(i => i.id == data5.idOrder && i.idUsers == data5.id).ToList();
 
-            if (products == null)
+            if (productsInOrderView == null)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(products.ConvertAll<Responce.ResponceProductsInOrder>(i => new Responce.ResponceProductsInOrder(i)));
+                return Ok(productsInOrderView.ConvertAll<Responce.ResponceProductsInOrderView>(i => new Responce.ResponceProductsInOrderView(i)));
             }
         }
     }

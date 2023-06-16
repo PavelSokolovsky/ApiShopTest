@@ -28,8 +28,8 @@ namespace ApiShopTest.Models
         public decimal price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        internal virtual ICollection<PriductsInOrders> PriductsInOrders { get; set; }
+        public virtual ICollection<PriductsInOrders> PriductsInOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        internal virtual ICollection<UsersProducts> UsersProducts { get; set; }
+        public virtual ICollection<UsersProducts> UsersProducts { get; set; }
     }
 }

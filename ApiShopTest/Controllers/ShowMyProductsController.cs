@@ -18,7 +18,7 @@ namespace ApiShopTest.Controllers
         [ResponseType(typeof(Responce.ResponceUsersProducts))]
         public IHttpActionResult ShowMyProducts(int idUser)
         {
-            List<UsersProducts> products = db.UsersProducts.Where(i=>i.idUsers == idUser).ToList();
+            List<ProductsView> products = db.ProductsView.Where(i => i.idUsers == idUser).ToList();
 
             if (products == null)
             {
@@ -26,7 +26,7 @@ namespace ApiShopTest.Controllers
             }
             else
             {
-                return Ok(products.ConvertAll<Responce.ResponceUsersProducts>(i=> new Responce.ResponceUsersProducts(i)));
+                return Ok(products.ConvertAll<Responce.ResponceProductsView>(i => new Responce.ResponceProductsView(i)));
             }
         }
     }

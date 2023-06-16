@@ -10,10 +10,12 @@ namespace ApiShopTest.Responce
     {
         public ResponceUsers(Users users)
         {
+            Id = users.id;
             Name = users.name;
             Login = users.login;
             Password = users.password;
         }
+        public int Id;
         public string Name;
         public string Login;
         public string Password;

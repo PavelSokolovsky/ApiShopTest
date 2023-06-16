@@ -24,9 +24,18 @@ namespace ApiShopTest.Controllers
         {
 
             var client = db.UsersProducts.FirstOrDefault(i => i.idUsers == data1.id  && i.Products.barCode == barcode);
-            client.amountCurrent = client.amountCurrent - 1;
-            db.SaveChanges();   
-            return StatusCode(HttpStatusCode.NoContent);
+            if (client != null)
+            {
+                client.amountCurrent = client.amountCurrent - 1;
+                db.SaveChanges();
+                return Ok();
+            }
+
+            else 
+            { 
+                return NotFound();
+            }   
+           
         }
 
     }

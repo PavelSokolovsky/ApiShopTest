@@ -64,6 +64,38 @@
           <Property Name="amountCurrent" Type="int" Nullable="false" />
           <Property Name="amountMin" Type="int" Nullable="false" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ShopTestDB.dbo.ProductsInOrderView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ProductsInOrderView">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="amountInOrder" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="idUsers" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="amountInOrder" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idUsers" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ShopTestDB.dbo.ProductsView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ProductsView">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="amountMAX" />
+            <PropertyRef Name="amountCurrent" />
+            <PropertyRef Name="amountMin" />
+            <PropertyRef Name="idUsers" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="amountMAX" Type="int" Nullable="false" />
+          <Property Name="amountCurrent" Type="int" Nullable="false" />
+          <Property Name="amountMin" Type="int" Nullable="false" />
+          <Property Name="idUsers" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Orders_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -131,6 +163,24 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersProducts" EntityType="Self.UsersProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsInOrderView" EntityType="Self.ProductsInOrderView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductsInOrderView].[id] AS [id], 
+    [ProductsInOrderView].[amountInOrder] AS [amountInOrder], 
+    [ProductsInOrderView].[name] AS [name], 
+    [ProductsInOrderView].[idUsers] AS [idUsers]
+    FROM [dbo].[ProductsInOrderView] AS [ProductsInOrderView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductsView" EntityType="Self.ProductsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductsView].[name] AS [name], 
+    [ProductsView].[id] AS [id], 
+    [ProductsView].[amountMAX] AS [amountMAX], 
+    [ProductsView].[amountCurrent] AS [amountCurrent], 
+    [ProductsView].[amountMin] AS [amountMin], 
+    [ProductsView].[idUsers] AS [idUsers]
+    FROM [dbo].[ProductsView] AS [ProductsView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
@@ -226,6 +276,34 @@
           <NavigationProperty Name="Products" Relationship="Self.FK_UsersProducts_Products" FromRole="UsersProducts" ToRole="Products" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UsersProducts_Users" FromRole="UsersProducts" ToRole="Users" />
         </EntityType>
+        <EntityType Name="ProductsInOrderView">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="amountInOrder" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="idUsers" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="amountInOrder" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idUsers" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductsView">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="amountMAX" />
+            <PropertyRef Name="amountCurrent" />
+            <PropertyRef Name="amountMin" />
+            <PropertyRef Name="idUsers" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="amountMAX" Type="Int32" Nullable="false" />
+          <Property Name="amountCurrent" Type="Int32" Nullable="false" />
+          <Property Name="amountMin" Type="Int32" Nullable="false" />
+          <Property Name="idUsers" Type="Int32" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Orders_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -293,6 +371,8 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UsersProducts" EntityType="Self.UsersProducts" />
+          <EntitySet Name="ProductsInOrderView" EntityType="Self.ProductsInOrderView" />
+          <EntitySet Name="ProductsView" EntityType="Self.ProductsView" />
           <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
@@ -382,6 +462,28 @@
                 <ScalarProperty Name="amountMAX" ColumnName="amountMAX" />
                 <ScalarProperty Name="amountCurrent" ColumnName="amountCurrent" />
                 <ScalarProperty Name="amountMin" ColumnName="amountMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsInOrderView">
+            <EntityTypeMapping TypeName="ShopTestDBModel.ProductsInOrderView">
+              <MappingFragment StoreEntitySet="ProductsInOrderView">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="amountInOrder" ColumnName="amountInOrder" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idUsers" ColumnName="idUsers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsView">
+            <EntityTypeMapping TypeName="ShopTestDBModel.ProductsView">
+              <MappingFragment StoreEntitySet="ProductsView">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="amountMAX" ColumnName="amountMAX" />
+                <ScalarProperty Name="amountCurrent" ColumnName="amountCurrent" />
+                <ScalarProperty Name="amountMin" ColumnName="amountMin" />
+                <ScalarProperty Name="idUsers" ColumnName="idUsers" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
